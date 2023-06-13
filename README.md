@@ -1,15 +1,21 @@
-## OnionPrincess
+# OnionPrincess
 This repository is created for the development and collaboration for our 2D RPG Game Codename:OnionPrincess.
 
-# Environment
+## Environment
 Python v3.10
+
 Pygame v2.4.0
+
 Numpy v1.23.5
+
 SciPy v1.10.1
+
 PyAudio v0.2.13
+
 Librosa v0.10.0post2
 
-# Code Structure
+
+## Code Structure
 Main: Main is the base layer for the code to run on, and the game runs on the Game class in Main. The Game class method run reads into the message queue, which provides the basis for the response to events triggered by the keyboard and mouse in the game. 
 
 Level:Level class establishes the hierarchy for switching between multiple maps, and although this hierarchy of multiple containers becomes less significant later in development, Level class was originally developed as a container to enable map switching. The main role of the Level class is to build the map, and the YSortCameraGroup class is called when the Level class is initialised to lay down the map's underlying png map and render the fine structure, although this function was deprecated later in development and replaced by a pre-rendered base map.
@@ -20,7 +26,7 @@ support,encode,SkeletonMatch,..:These code doesn't actually work on any part of 
 
 To summarize, the code starts from the Game class and enters the command loop, passing the queue of keyboard and mouse operation messages read into Level or responding directly in the Game class. there is always one and only one Level and Player in the Game class, and the event responses for the incoming operations and in-game values are assigned in the Level class. Events such as monster alerts, attacks, deaths etc. are also handled by Level. Game.level will only be re-instantiated when the map is switched, when the archive is read, when a new map and environment is created, and when you die or are transported to a new map.
 
-# Data Structure Usage
+## Data Structure Usage
 Sparse matrix compression by CSR
 Use the values, rows and columns arrays to store the location of non--1 values.This speeds up map reading considerably.
 
@@ -35,5 +41,5 @@ KMP
 Rather than using kmp directly, here we take advantage of the idea that kmp keeps the sequence to be matched constant without receding, which matches the real-time incoming we need for audio processing. Using a sliding window, we perform a continuous prefix match of the sequence to be matched against the matching sequence, moving the matching string slightly forward after the match, continuing with the next segment of the matching string, recording the minimum Hemming distance after the mismatch, and returning the minimum Hemming distance during the period as the result of the match at the end of the input or when the Hemming distance is low enough.
 (This algorithm has been abandoned due to the time consuming hash algorithm, resulting in the real-time audio not being recognized properly; 6.8,lzc)
 
-# Run
+## Run
 Go to main.py and then have fun!
